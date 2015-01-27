@@ -482,7 +482,11 @@ static NSMutableArray *publishPermissions;
     }
     NSMutableDictionary* params =   [NSMutableDictionary dictionaryWithObjectsAndKeys: nil];
     if([command.arguments count] > 2 && [command.arguments objectAtIndex:2] != (id)[NSNull null]) {
-        params = [command.arguments objectAtIndex:2];
+        params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            // Optional parameter for sending request directly to user
+            // with UID. If not specified, the MFS will be invoked
+            [command.arguments objectAtIndex:2], @"to",  
+        nil];
     }
     
     [FBWebDialogs presentRequestsDialogModallyWithSession:nil
