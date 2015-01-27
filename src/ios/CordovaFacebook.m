@@ -481,6 +481,10 @@ static NSMutableArray *publishPermissions;
         title = [command.arguments objectAtIndex:1];
     }
     NSMutableDictionary* params =   [NSMutableDictionary dictionaryWithObjectsAndKeys: nil];
+    if([command.arguments count] > 2 && [command.arguments objectAtIndex:2] != (id)[NSNull null]) {
+        params = [command.arguments objectAtIndex:2];
+    }
+    
     [FBWebDialogs presentRequestsDialogModallyWithSession:nil
                                                   message:message
                                                     title:title
